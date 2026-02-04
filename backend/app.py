@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from groq import Groq
 from dotenv import load_dotenv
@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 # .env 파일에서 환경 변수 로드
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend', static_url_path='')
 # 프론트엔드からの 모든 출처에서의 요청을 허용
 CORS(app) 
 
@@ -33,7 +33,7 @@ def convert_text():
     if not original_text or not target:
         return jsonify({"error": "텍스트와 변환 대상은 필수입니다."}), 400
 
-    # Sprint 1: 실제 Groq API 호출 대신 더미 응답 반환
+    # Sprint 1: 실제 Groq API 호출 대신 더미 응답 반미
     dummy_response = f"'{original_text}'를 '{target}'에게 보내는 말투로 변환한 결과입니다. (이것은 더미 응답입니다.)"
     
     response_data = {
@@ -45,8 +45,17 @@ def convert_text():
     return jsonify(response_data)
 
 @app.route('/')
-def index():
-    return "BizTone Converter 백엔드 서버가 실행 중입니다."
+def serve_index():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/css/<path:filename>')
+def serve_css(filename):
+    return send_from_directory(os.path.join(app.static_folder, 'css'), filename)
+
+@app.route('/js/<path:filename>')
+def serve_js(filename):
+    return send_from_directory(os.path.join(app.static_folder, 'js'), filename)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
