@@ -1,0 +1,11 @@
+/* frontend/css/style.css */
+body {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    margin: 20px;
+    background-color: #F5F7FA; /* Secondary Color */
+    color: #333333; /* Text Color */
+}
+
+h1 {
+    color: #4A90E2; /* Primary Color */
+}
