@@ -4,35 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BizTone Converter</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <h1>BizTone Converter - 업무 말투 변환기</h1>
-        <div class="converter-wrapper">
-            <div class="input-card card">
-                <h2>원본 텍스트</h2>
-                <textarea id="original-text" placeholder="여기에 변환할 텍스트를 입력하세요. (최대 500자)" maxlength="500"></textarea>
-                <div class="char-count">
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">BizTone Converter - 업무 말투 변환기</h1>
+        <div class="flex flex-col lg:flex-row gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md flex-1">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-4">원본 텍스트</h2>
+                <textarea id="original-text" class="w-full h-48 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="여기에 변환할 텍스트를 입력하세요. (최대 500자)" maxlength="500"></textarea>
+                <div class="text-right text-sm text-gray-500 mt-1 mb-4">
                     <span id="current-char-count">0</span> / 500
                 </div>
-                <div class="target-selection">
-                    <h3>변환 대상</h3>
-                    <label><input type="radio" name="target" value="상사" checked> 상사</label>
-                    <label><input type="radio" name="target" value="타팀 동료"> 타팀 동료</label>
-                    <label><input type="radio" name="target" value="고객"> 고객</label>
+                <div class="mb-4">
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">변환 대상</h3>
+                    <label class="mr-4"><input type="radio" name="target" value="상사" class="mr-1" checked> 상사</label>
+                    <label class="mr-4"><input type="radio" name="target" value="타팀 동료" class="mr-1"> 타팀 동료</label>
+                    <label class="mr-4"><input type="radio" name="target" value="고객" class="mr-1"> 고객</label>
                 </div>
-                <button id="convert-button" class="primary-button">변환하기</button>
+                <button id="convert-button" class="w-full bg-blue-600 text-white py-3 px-4 rounded-md font-semibold hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-150 ease-in-out">변환하기</button>
             </div>
-            <div class="output-card card">
-                <h2>변환 결과</h2>
-                <textarea id="converted-text" readonly placeholder="변환된 텍스트가 여기에 표시됩니다."></textarea>
-                <button id="copy-button" class="primary-button">복사하기</button>
-                <div id="feedback-message" class="feedback-message"></div>
+            <div class="bg-white p-6 rounded-lg shadow-md flex-1">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-4">변환 결과</h2>
+                <textarea id="converted-text" class="w-full h-48 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" readonly placeholder="변환된 텍스트가 여기에 표시됩니다."></textarea>
+                <button id="copy-button" class="mt-4 w-full bg-blue-600 text-white py-3 px-4 rounded-md font-semibold hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-150 ease-in-out">복사하기</button>
+                <div id="feedback-message" class="text-center mt-4 p-2.5 rounded-md text-sm"></div>
                 <!-- Optional: FR-06 사용자 피드백 -->
-                <div class="user-feedback">
-                    <button class="feedback-btn" data-feedback="helpful">도움됨</button>
-                    <button class="feedback-btn" data-feedback="not-helpful">도움 안 됨</button>
+                <div class="flex justify-center gap-2 mt-5">
+                    <button class="feedback-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-300 transition duration-150 ease-in-out" data-feedback="helpful">도움됨</button>
+                    <button class="feedback-btn bg-gray-200 text-gray-700 py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-300 transition duration-150 ease-in-out" data-feedback="not-helpful">도움 안 됨</button>
                 </div>
             </div>
         </div>
